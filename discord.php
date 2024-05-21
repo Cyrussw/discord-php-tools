@@ -54,19 +54,16 @@ class Discord
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_URL, $discord_users_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // İstek sonucunu döndürmesi için CURLOPT_RETURNTRANSFER ayarlanır
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, false);
 
         $result = curl_exec($ch);
 
         if (!$result) {
-            // İstek başarısız olduğunda false döndürülür
             return false;
         }
 
         curl_close($ch);
-
-        // JSON verisini diziye dönüştürerek döndürülür
         return json_decode($result, true);
     }
 
